@@ -1,6 +1,7 @@
 import React from 'react';
 import { Coffee, Package, Users, Sparkles, Smile } from 'lucide-react';
 import { siteConfig } from '../data/siteConfig';
+import { assetUrl } from '../utils/assetUrl';
 
 export const ExperienceSection: React.FC = () => {
   return (
@@ -20,7 +21,7 @@ export const ExperienceSection: React.FC = () => {
           <div className="exp-card">
             <div className="exp-image-wrap">
               <img
-                src="/images/dishes/cafe-hall-counter.jpg"
+                src={assetUrl('/images/dishes/cafe-hall-counter.jpg')}
                 alt="Vasantham Cafe Counter and Dining Environment"
                 className="exp-card-img"
                 loading="lazy"
@@ -45,7 +46,7 @@ export const ExperienceSection: React.FC = () => {
           <div className="exp-card featured-exp-card">
             <div className="exp-image-wrap">
               <img
-                src="/images/dishes/cafe-doodle-wall.jpg"
+                src={assetUrl('/images/dishes/cafe-doodle-wall.jpg')}
                 alt="Vasantham Cafe Doodle Art Wall with Coffee Sayings"
                 className="exp-card-img"
                 loading="lazy"
@@ -70,7 +71,7 @@ export const ExperienceSection: React.FC = () => {
           <div className="exp-card">
             <div className="exp-image-wrap">
               <img
-                src="/images/dishes/cafe-seating-dining.jpg"
+                src={assetUrl('/images/dishes/cafe-seating-dining.jpg')}
                 alt="Vasantham Cafe Round Dining Tables and Modern Chairs"
                 className="exp-card-img"
                 loading="lazy"

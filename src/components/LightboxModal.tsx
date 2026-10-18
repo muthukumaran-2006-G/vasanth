@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import type { GalleryItem } from '../data/galleryData';
+import { assetUrl } from '../utils/assetUrl';
 
 interface LightboxModalProps {
   isOpen: boolean;
@@ -134,7 +135,7 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
 
           <div className="lightbox-media-container">
             <img
-              src={item.image}
+              src={assetUrl(item.image)}
               alt={item.alt}
               className="lightbox-full-img"
               width="1000"

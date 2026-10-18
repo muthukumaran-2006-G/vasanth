@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowDown, Coffee, Sparkles } from 'lucide-react';
 import { siteConfig } from '../data/siteConfig';
+import { assetUrl } from '../utils/assetUrl';
 
 export const Hero: React.FC = () => {
   const scrollTo = (id: string) => {
@@ -15,7 +16,7 @@ export const Hero: React.FC = () => {
       {/* Background Cinematic Image with Editorial Scrim */}
       <div className="hero-media-wrapper">
         <img
-          src="/images/cafe-interior-mural.jpg"
+          src={assetUrl('/images/cafe-interior-mural.jpg')}
           alt="Vasantham Cafe Signature Interior and Wall Mural"
           className="hero-bg-image"
           fetchPriority="high"

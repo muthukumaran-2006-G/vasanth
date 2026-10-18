@@ -1,6 +1,7 @@
 import React from 'react';
 import { Coffee, Heart, Clock, Utensils } from 'lucide-react';
 import { siteConfig } from '../data/siteConfig';
+import { assetUrl } from '../utils/assetUrl';
 
 export const StorySection: React.FC = () => {
   return (
@@ -11,7 +12,7 @@ export const StorySection: React.FC = () => {
           <div className="story-media-col">
             <div className="story-image-main-wrap">
               <img
-                src="/images/cafe-interior-ambiance.jpg"
+                src={assetUrl('/images/cafe-interior-ambiance.jpg')}
                 alt="Vasantham Cafe Interior Dining Ambiance and Illustrated Coffee Wall"
                 className="story-main-img"
                 loading="lazy"
@@ -24,7 +25,7 @@ export const StorySection: React.FC = () => {
             {/* Inset Accent Photo */}
             <div className="story-inset-card">
               <img
-                src="/images/dishes/mural-latte-art.jpg"
+                src={assetUrl('/images/dishes/mural-latte-art.jpg')}
                 alt="Handcrafted Latte Art at Vasantham Cafe"
                 className="story-inset-img"
                 loading="lazy"

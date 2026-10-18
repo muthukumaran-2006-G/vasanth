@@ -1,5 +1,6 @@
 import { ArrowUp, MessageCircle, MapPin, Phone, Mail } from 'lucide-react';
 import { siteConfig } from '../data/siteConfig';
+import { assetUrl } from '../utils/assetUrl';
 
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -18,7 +19,7 @@ export const Footer: React.FC = () => {
             <div className="footer-brand-header">
               <div className="footer-logo-wrap">
                 <img
-                  src="/images/vasantham-logo.jpg"
+                  src={assetUrl('/images/vasantham-logo.jpg')}
                   alt="Vasantham Cafe Official Logo"
                   className="footer-logo-img"
                   width="54"

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Coffee, ArrowUpRight } from 'lucide-react';
 import { siteConfig } from '../data/siteConfig';
+import { assetUrl } from '../utils/assetUrl';
 
 export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -65,7 +66,7 @@ export const Navbar: React.FC = () => {
         >
           <div className="brand-emblem-wrap">
             <img
-              src="/images/vasantham-logo.jpg"
+              src={assetUrl('/images/vasantham-logo.jpg')}
               alt="Vasantham Cafe Crest"
               className="brand-logo-img"
               width="44"

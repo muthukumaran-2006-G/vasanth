@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Maximize2 } from 'lucide-react';
 import { galleryItems } from '../data/galleryData';
 import { LightboxModal } from './LightboxModal';
+import { assetUrl } from '../utils/assetUrl';
 
 export const GallerySection: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
@@ -79,7 +80,7 @@ export const GallerySection: React.FC = () => {
             >
               <div className="gallery-thumb-wrap">
                 <img
-                  src={item.image}
+                  src={assetUrl(item.image)}
                   alt={item.alt}
                   className="gallery-thumb-img"
                   loading="lazy"

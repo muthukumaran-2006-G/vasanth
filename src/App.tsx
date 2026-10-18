@@ -9,6 +9,7 @@ import { VisitSection } from './components/VisitSection';
 import { Footer } from './components/Footer';
 import { LightboxModal } from './components/LightboxModal';
 import type { GalleryItem } from './data/galleryData';
+import { assetUrl } from './utils/assetUrl';
 
 export const App: React.FC = () => {
   const [isMenuBoardOpen, setIsMenuBoardOpen] = useState(false);
@@ -17,7 +18,7 @@ export const App: React.FC = () => {
     id: "full-menu-board",
     title: "Official Vasantham Cafe Menu Board",
     category: "Brand Art",
-    image: "/images/vasantham-full-menu.jpg",
+    image: assetUrl("/images/vasantham-full-menu.jpg"),
     alt: "Official two-page printed menu board of Vasantham Cafe with all items and rates",
     caption: "“Fresh Brews, Great Bites, Every Time” — Complete official two-page menu with verified pricing and item listings.",
     aspect: "landscape"

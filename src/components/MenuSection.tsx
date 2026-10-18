@@ -7,6 +7,7 @@ import {
   FileText
 } from 'lucide-react';
 import { menuCategories, type MenuCategory } from '../data/menuData';
+import { assetUrl } from '../utils/assetUrl';
 
 interface MenuSectionProps {
   onOpenMenuLightbox: () => void;
@@ -165,7 +166,7 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ onOpenMenuLightbox }) 
                 <div className="category-header">
                   <div className="category-photo-wrap">
                     <img
-                      src={category.image}
+                      src={assetUrl(category.image)}
                       alt={category.name}
                       className="category-hero-thumb"
                       loading="lazy"
