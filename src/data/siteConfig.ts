@@ -69,26 +69,25 @@ export const siteConfig: SiteConfig = {
     { label: "Visit Us", href: "#visit" },
   ],
   contact: {
-    phone: "+91 98765 43210",
-    displayPhone: "+91 98765 43210",
-    email: "hello@vasanthamcafe.com",
+    phone: "+91 77088 63528",
+    displayPhone: "+91 77088 63528",
+    email: "vasanthamcafe2506@gmail.com",
     address: {
-      line1: "Vasantham Cafe (BSV Groups)",
-      area: "Main Road, Commercial Hub",
-      cityState: "Tamil Nadu, India",
-      landmarkNote: "Near Central Junction — Easily accessible with parking available."
+      line1: "Vasantham Cafe",
+      area: "Mint Street",
+      cityState: "Tirupathur, 635901, Tamil Nadu, India"
     },
     openingHours: [
       { days: "Monday – Saturday", hours: "7:00 AM – 10:30 PM" },
       { days: "Sunday", hours: "7:00 AM – 11:00 PM" }
     ],
     parcelNote: "Parcel orders: Extra ₹5",
-    googleMapsUrl: "https://maps.google.com/?q=Vasantham+Cafe"
+    googleMapsUrl: "https://maps.google.com/?q=Vasantham+Cafe%2C+Mint+Street%2C+Tirupathur%2C+635901%2C+Tamil+Nadu%2C+India"
   },
   social: {
     instagram: "https://instagram.com/vasanthamcafe",
     facebook: "https://facebook.com/vasanthamcafe",
-    whatsappUrl: "https://wa.me/919876543210?text=Hi%20Vasantham%20Cafe,%20I%20would%20like%20to%20inquire%20about%20your%20menu"
+    whatsappUrl: "https://wa.me/917708863528?text=Hi%20Vasantham%20Cafe,%20I%20would%20like%20to%20inquire%20about%20your%20menu"
   },
   features: [
     {

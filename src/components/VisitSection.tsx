@@ -34,7 +34,8 @@ export const VisitSection: React.FC = () => {
     const message = encodeURIComponent(
       `Hello Vasantham Cafe! My name is ${inquiryName} (${inquiryPhone}). ${inquiryNote ? `Note: ${inquiryNote}` : 'I would like to inquire about visiting/ordering.'}`
     );
-    const whatsappUrl = `https://wa.me/919876543210?text=${message}`;
+    const whatsappNumber = siteConfig.contact.phone.replace(/\D/g, '');
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
 
     // Open WhatsApp directly with the customer's message prefilled
     window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
