@@ -45,7 +45,7 @@ export const Footer: React.FC = () => {
 
           {/* Column 2: Quick Links */}
           <div className="footer-nav-col">
-            <h4 className="footer-heading">Explore</h4>
+            <h2 className="footer-heading">Explore</h2>
             <ul className="footer-links-list">
               {siteConfig.navigation.map((item) => (
                 <li key={item.label}>
@@ -59,7 +59,7 @@ export const Footer: React.FC = () => {
 
           {/* Column 3: Menu Favorites */}
           <div className="footer-menu-col">
-            <h4 className="footer-heading">Menu Highlights</h4>
+            <h2 className="footer-heading">Menu Highlights</h2>
             <ul className="footer-links-list">
               <li><a href="#menu" className="footer-link">South Indian Filter Coffee</a></li>
               <li><a href="#menu" className="footer-link">Elachi & Ginger Tea</a></li>
@@ -72,7 +72,7 @@ export const Footer: React.FC = () => {
 
           {/* Column 4: Contact & Hours */}
           <div className="footer-contact-col">
-            <h4 className="footer-heading">Connect</h4>
+            <h2 className="footer-heading">Connect</h2>
             <div className="footer-contact-items">
               <div className="footer-contact-row">
                 <MapPin size={16} className="footer-icon" />

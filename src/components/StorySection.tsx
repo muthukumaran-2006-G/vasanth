@@ -75,7 +75,7 @@ export const StorySection: React.FC = () => {
                   <Utensils size={20} />
                 </div>
                 <div>
-                  <h4 className="value-title">Freshly Made</h4>
+                  <h3 className="value-title">Freshly Made</h3>
                   <p className="value-desc">No shortcuts. Prepared piping hot upon every order.</p>
                 </div>
               </div>
@@ -85,7 +85,7 @@ export const StorySection: React.FC = () => {
                   <Heart size={20} />
                 </div>
                 <div>
-                  <h4 className="value-title">Comforting Flavours</h4>
+                  <h3 className="value-title">Comforting Flavours</h3>
                   <p className="value-desc">Timeless recipes crafted to bring warmth and familiar joy.</p>
                 </div>
               </div>
@@ -95,7 +95,7 @@ export const StorySection: React.FC = () => {
                   <Clock size={20} />
                 </div>
                 <div>
-                  <h4 className="value-title">A Space to Unwind</h4>
+                  <h3 className="value-title">A Space to Unwind</h3>
                   <p className="value-desc">Thoughtfully designed seating, playful art murals, and good music.</p>
                 </div>
               </div>

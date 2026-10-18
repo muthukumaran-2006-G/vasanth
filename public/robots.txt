@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /vasanth/
+
+Sitemap: https://muthukumaran-2006-g.github.io/vasanth/sitemap.xml
