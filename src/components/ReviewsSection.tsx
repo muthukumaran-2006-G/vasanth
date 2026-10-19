@@ -1,68 +1,6 @@
 import React, { useState } from 'react';
 import { Star } from 'lucide-react';
-
-interface CafeReview {
-  id: string;
-  name: string;
-  foodRating: number;
-  ambienceRating: number;
-  comment: string;
-  createdAt: string;
-}
-
-const STORAGE_KEY = 'vasantham-cafe-reviews';
-const MAX_REVIEWS = 30;
-const MAX_COMMENT_LENGTH = 1000;
-
-interface SavedReviewState {
-  reviews: CafeReview[];
-  statusMessage: string;
-}
-
-const isCafeReview = (value: unknown): value is CafeReview => {
-  if (typeof value !== 'object' || value === null) return false;
-
-  const review = value as Record<string, unknown>;
-  return (
-    typeof review.id === 'string' &&
-    typeof review.name === 'string' &&
-    typeof review.foodRating === 'number' &&
-    Number.isInteger(review.foodRating) &&
-    review.foodRating >= 1 &&
-    review.foodRating <= 5 &&
-    typeof review.ambienceRating === 'number' &&
-    Number.isInteger(review.ambienceRating) &&
-    review.ambienceRating >= 1 &&
-    review.ambienceRating <= 5 &&
-    typeof review.comment === 'string' &&
-    review.comment.length <= MAX_COMMENT_LENGTH &&
-    typeof review.createdAt === 'string' &&
-    !Number.isNaN(Date.parse(review.createdAt))
-  );
-};
-
-const readSavedReviews = (): SavedReviewState => {
-  try {
-    const storedReviews = window.localStorage.getItem(STORAGE_KEY);
-    if (!storedReviews) return { reviews: [], statusMessage: '' };
-
-    const parsed: unknown = JSON.parse(storedReviews);
-    if (!Array.isArray(parsed)) {
-      throw new Error('Stored reviews are not a list.');
-    }
-
-    const reviews = parsed.filter(isCafeReview).slice(0, MAX_REVIEWS);
-    return {
-      reviews,
-      statusMessage: reviews.length === parsed.length
-        ? ''
-        : 'Some saved comments could not be displayed because their data was invalid.',
-    };
-  } catch (error) {
-    console.error('Unable to load saved cafe reviews from this browser.', error);
-    return { reviews: [], statusMessage: 'Saved comments could not be loaded from this browser.' };
-  }
-};
+import { siteConfig } from '../data/siteConfig';
 
 const RatingPicker: React.FC<{
   label: string;
@@ -96,58 +34,57 @@ const RatingPicker: React.FC<{
   </fieldset>
 );
 
-const ReviewStars: React.FC<{ rating: number; label: string }> = ({ rating, label }) => (
-  <span className="review-display-rating" aria-label={`${label}: ${rating} out of 5`}>
-    {Array.from({ length: 5 }, (_, index) => (
-      <Star
-        key={index}
-        size={15}
-        fill={index < rating ? 'currentColor' : 'none'}
-        aria-hidden="true"
-      />
-    ))}
-    <span>{label}</span>
-  </span>
-);
-
 export const ReviewsSection: React.FC = () => {
-  const [savedReviewState] = useState(readSavedReviews);
-  const [reviews, setReviews] = useState(savedReviewState.reviews);
   const [name, setName] = useState('');
   const [comment, setComment] = useState('');
   const [foodRating, setFoodRating] = useState(0);
   const [ambienceRating, setAmbienceRating] = useState(0);
-  const [statusMessage, setStatusMessage] = useState(savedReviewState.statusMessage);
+  const [smsLink, setSmsLink] = useState('');
+  const [statusMessage, setStatusMessage] = useState('');
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const trimmedComment = comment.trim();
     if (!trimmedComment) return;
     if (!foodRating || !ambienceRating) {
-      setStatusMessage('Please choose a food and ambience rating before posting.');
+      setSmsLink('');
+      setStatusMessage('Please choose a food and ambience rating before preparing your SMS.');
       return;
     }
 
-    const review: CafeReview = {
-      id: globalThis.crypto?.randomUUID?.() ?? `${Date.now()}-${Math.random()}`,
-      name: name.trim().slice(0, 50),
-      foodRating,
-      ambienceRating,
-      comment: trimmedComment.slice(0, MAX_COMMENT_LENGTH),
-      createdAt: new Date().toISOString(),
-    };
-    const nextReviews = [review, ...reviews].slice(0, MAX_REVIEWS);
+    const message = [
+      `Vasantham Cafe feedback${name.trim() ? ` from ${name.trim().slice(0, 50)}` : ''}`,
+      `Food rating: ${foodRating}/5`,
+      `Ambience rating: ${ambienceRating}/5`,
+      `Comment: ${trimmedComment.slice(0, 1000)}`,
+    ].join('\n');
+    const phone = siteConfig.contact.phone.replace(/\D/g, '');
+    setSmsLink(`sms:${phone}?body=${encodeURIComponent(message)}`);
+    setStatusMessage('Your review is ready. Open your messaging app and tap Send to send it to the cafe.');
+  };
 
-    try {
-      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(nextReviews));
-      setStatusMessage('Your comment has been posted on this device.');
-    } catch (error) {
-      console.error('Unable to save cafe review in this browser.', error);
-      setStatusMessage('Your comment is visible for now, but could not be saved on this device.');
-    }
+  const updateName = (value: string) => {
+    setName(value);
+    setSmsLink('');
+    setStatusMessage('');
+  };
 
-    setReviews(nextReviews);
-    setComment('');
+  const updateComment = (value: string) => {
+    setComment(value);
+    setSmsLink('');
+    setStatusMessage('');
+  };
+
+  const updateFoodRating = (value: number) => {
+    setFoodRating(value);
+    setSmsLink('');
+    setStatusMessage('');
+  };
+
+  const updateAmbienceRating = (value: number) => {
+    setAmbienceRating(value);
+    setSmsLink('');
+    setStatusMessage('');
   };
 
   return (
@@ -157,13 +94,13 @@ export const ReviewsSection: React.FC = () => {
           <div className="section-eyebrow">VISITOR FEEDBACK</div>
           <h2 id="reviews-title" className="section-title">Share Your Cafe Experience</h2>
           <p className="section-description">
-            Tell us what you thought of the food and ambience. Your comment will appear below and be saved only in this browser.
+            Tell us what you thought of the food and ambience. Prepare a text message to send your feedback directly to the cafe.
           </p>
         </div>
 
         <div className="reviews-layout">
           <form className="review-form" onSubmit={handleSubmit}>
-            <h3 className="review-form-title">Write a comment</h3>
+            <h3 className="review-form-title">Send a review by SMS</h3>
             <label className="review-input-label" htmlFor="review-name">
               Name <span>(optional)</span>
             </label>
@@ -173,61 +110,49 @@ export const ReviewsSection: React.FC = () => {
               type="text"
               value={name}
               maxLength={50}
-              onChange={(event) => setName(event.target.value)}
+              onChange={(event) => updateName(event.target.value)}
               placeholder="Your name"
             />
 
-            <RatingPicker label="Food" value={foodRating} onChange={setFoodRating} />
-            <RatingPicker label="Ambience" value={ambienceRating} onChange={setAmbienceRating} />
+            <RatingPicker label="Food" value={foodRating} onChange={updateFoodRating} />
+            <RatingPicker label="Ambience" value={ambienceRating} onChange={updateAmbienceRating} />
 
             <label className="review-input-label" htmlFor="review-comment">Your comment</label>
             <textarea
               id="review-comment"
               className="review-text-input review-comment-input"
               value={comment}
-              maxLength={MAX_COMMENT_LENGTH}
-              onChange={(event) => setComment(event.target.value)}
+              maxLength={1000}
+              onChange={(event) => updateComment(event.target.value)}
               placeholder="Share a helpful note about your visit..."
               required
               rows={5}
             />
             <div className="review-form-footer">
               <span className="review-character-count">
-                {comment.length}/{MAX_COMMENT_LENGTH}
+                {comment.length}/1000
               </span>
               <button className="btn btn-primary review-submit-button" type="submit">
-                Post comment
+                Prepare SMS
               </button>
             </div>
             <p className="review-storage-note">
-              Comments are stored in this browser only; they are not sent to or visible to the cafe or other visitors.
+              Your review is not saved on this website. Your messaging app will open with the review addressed to {siteConfig.contact.displayPhone}; check it and tap Send. SMS charges may apply.
             </p>
             {statusMessage && (
               <p className="review-status-message" role="status">{statusMessage}</p>
             )}
+            {smsLink && (
+              <a className="btn btn-secondary review-sms-link" href={smsLink}>
+                Open SMS app
+              </a>
+            )}
           </form>
 
-          <div className="review-list" aria-live="polite">
-            <h3 className="review-list-title">Visitor comments</h3>
-            {reviews.length > 0 ? (
-              reviews.map((review) => (
-                <article className="review-card" key={review.id}>
-                  <div className="review-card-heading">
-                    <strong>{review.name || 'Cafe visitor'}</strong>
-                    <time dateTime={review.createdAt}>
-                      {new Date(review.createdAt).toLocaleDateString()}
-                    </time>
-                  </div>
-                  <div className="review-card-ratings">
-                    <ReviewStars rating={review.foodRating} label="Food" />
-                    <ReviewStars rating={review.ambienceRating} label="Ambience" />
-                  </div>
-                  <p className="review-card-comment">{review.comment}</p>
-                </article>
-              ))
-            ) : (
-              <p className="review-empty-state">No comments yet. Be the first to share your experience.</p>
-            )}
+          <div className="review-list">
+            <h3 className="review-list-title">What your SMS includes</h3>
+            <p>Your optional name, separate food and ambience ratings, and your comment are added to the draft message.</p>
+            <p>The SMS app lets you review the message and choose whether to send it. This website does not store submissions.</p>
           </div>
         </div>
       </div>
@@ -307,20 +232,13 @@ export const ReviewsSection: React.FC = () => {
         }
 
         .review-rating-options,
-        .review-display-rating {
-          display: flex;
-          align-items: center;
-          gap: 0.25rem;
-        }
-
         .review-star-button {
           display: inline-flex;
           padding: 0.2rem;
           color: #B9AA93;
         }
 
-        .review-star-button.selected,
-        .review-display-rating svg {
+        .review-star-button.selected {
           color: var(--color-gold-dark);
         }
 
@@ -358,55 +276,8 @@ export const ReviewsSection: React.FC = () => {
           color: var(--color-espresso);
         }
 
-        .review-card {
-          padding: 1rem 0;
-          border-top: 1px solid var(--border-subtle);
-        }
-
-        .review-card:first-of-type {
-          border-top: 0;
-        }
-
-        .review-card-heading {
-          display: flex;
-          flex-wrap: wrap;
-          align-items: baseline;
-          justify-content: space-between;
-          gap: 0.4rem 1rem;
-          color: var(--color-espresso);
-        }
-
-        .review-card-heading time {
-          color: var(--text-secondary);
-          font-size: var(--text-xs);
-        }
-
-        .review-card-ratings {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 0.5rem 1rem;
-          margin-top: 0.5rem;
-        }
-
-        .review-display-rating {
-          color: var(--text-secondary);
-          font-size: var(--text-xs);
-        }
-
-        .review-display-rating span {
-          margin-left: 0.2rem;
-        }
-
-        .review-card-comment {
-          margin-top: 0.75rem;
-          color: var(--text-primary);
-          white-space: pre-wrap;
-          overflow-wrap: anywhere;
-        }
-
-        .review-empty-state {
-          padding: 1rem 0;
-          color: var(--text-secondary);
+        .review-sms-link {
+          margin-top: 1rem;
         }
 
         @media (max-width: 760px) {
