@@ -56,7 +56,7 @@ export const StorySection: React.FC = () => {
             </h2>
 
             <p className="story-lead">
-              At Vasantham Cafe, we believe a great cafe is more than just a place to grab a drink—it is a sanctuary where the clock slows down and genuine hospitality takes center stage.
+              Vasantham Cafe is in Tirupathur, Tamil Nadu. Its menu brings together South Indian filter coffee and tea with sandwiches, potato snacks, steamed momos, burgers, wraps, juices, milkshakes and ice cream.
             </p>
 
             <blockquote className="story-quote">
@@ -65,7 +65,7 @@ export const StorySection: React.FC = () => {
             </blockquote>
 
             <p className="story-body">
-              Whether you are stopping by for a comforting morning cup of cardamom chai, sharing hot steamed momos with close friends after work, or treating yourself to our freshly made gourmet burgers and stone-baked pizzas, every plate is prepared fresh to order.
+              The cafe has indoor seating and illustrated wall art. Browse the menu by category or search for a dish, then choose dine-in or takeaway.
             </p>
 
             {/* Value Highlights */}
@@ -96,7 +96,7 @@ export const StorySection: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="value-title">A Space to Unwind</h3>
-                  <p className="value-desc">Thoughtfully designed seating, playful art murals, and good music.</p>
+                  <p className="value-desc">Indoor seating and illustrated wall art are part of the cafe setting.</p>
                 </div>
               </div>
             </div>

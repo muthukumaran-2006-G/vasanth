@@ -53,9 +53,9 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ onOpenMenuLightbox }) 
         {/* Section Header */}
         <div className="section-title-wrap">
           <div className="section-eyebrow">FRESH BREWS & GREAT BITES</div>
-          <h2 className="section-title">The Vasantham Menu</h2>
+          <h2 className="section-title">Vasantham Cafe Menu</h2>
           <p className="section-description">
-            Carefully prepared with quality ingredients. From morning tea and refreshing cold brews to gourmet fast bites and crispy street snacks.
+            The menu includes South Indian filter coffee and tea, cold beverages, bread omelettes, sandwiches, snacks, momos, burgers, rolls, juices, milkshakes and ice cream. Use the category filters or search to browse.
           </p>
         </div>
 
@@ -167,7 +167,7 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ onOpenMenuLightbox }) 
                   <div className="category-photo-wrap">
                     <img
                       src={assetUrl(category.image)}
-                      alt={category.name}
+                      alt={`${category.name} at Vasantham Cafe`}
                       className="category-hero-thumb"
                       loading="lazy"
                       width="120"

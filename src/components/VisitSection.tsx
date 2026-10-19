@@ -48,9 +48,9 @@ export const VisitSection: React.FC = () => {
         {/* Section Header */}
         <div className="section-title-wrap">
           <div className="section-eyebrow">LOCATION & HOURS</div>
-          <h2 className="section-title">Drop by Vasantham Cafe</h2>
+          <h2 className="section-title">Find Vasantham Cafe in Tirupathur</h2>
           <p className="section-description">
-            Whether for a morning filter coffee restart, an afternoon snack, or evening chats with friends, our doors are open with fresh brews ready.
+            Plan a visit to Vasantham Cafe in Tirupathur, Tamil Nadu, and explore the cafe menu before you come in.
           </p>
         </div>
 

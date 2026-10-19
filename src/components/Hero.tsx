@@ -40,6 +40,7 @@ export const Hero: React.FC = () => {
           {/* Main Headline */}
           <h1 className="hero-headline">
             <span className="hero-wordmark">VASANTHAM CAFE</span>
+            <span className="hero-location">In Tirupathur, Tamil Nadu</span>
             <span className="hero-tagline-quote">“{siteConfig.brand.tagline}”</span>
           </h1>
 
@@ -232,6 +233,15 @@ export const Hero: React.FC = () => {
           letter-spacing: 0.05em;
           color: #FFFFFF;
           text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6);
+        }
+
+        .hero-location {
+          font-family: var(--font-sans);
+          font-size: clamp(0.85rem, 0.75rem + 0.5vw, 1.1rem);
+          font-weight: 600;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          color: var(--color-gold-light);
         }
 
         .hero-tagline-quote {

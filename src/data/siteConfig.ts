@@ -47,7 +47,7 @@ export const siteConfig: SiteConfig = {
     name: "Vasantham Cafe",
     parentGroup: "BSV Groups",
     tagline: "A Little Moment of Vasantham.",
-    secondaryTagline: "Good food, comforting flavours, and moments worth slowing down for.",
+    secondaryTagline: "Find Vasantham Cafe in Tirupathur, Tamil Nadu. Browse a menu of coffee and tea, sandwiches, momos, burgers, snacks, juices and more.",
     wallMuralQuote: "A Coffee Break isn't an End, It's the Spark for a Powerful Restart.",
     atmosphereQuotes: [
       "Fresh Brews, Great Bites, Every Time",
@@ -66,6 +66,7 @@ export const siteConfig: SiteConfig = {
     { label: "Signature Menu", href: "#menu" },
     { label: "Experience", href: "#experience" },
     { label: "Gallery", href: "#gallery" },
+    { label: "Reviews", href: "#reviews" },
     { label: "Visit Us", href: "#visit" },
   ],
   contact: {

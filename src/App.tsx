@@ -5,6 +5,7 @@ import { StorySection } from './components/StorySection';
 import { ExperienceSection } from './components/ExperienceSection';
 import { MenuSection } from './components/MenuSection';
 import { GallerySection } from './components/GallerySection';
+import { ReviewsSection } from './components/ReviewsSection';
 import { VisitSection } from './components/VisitSection';
 import { Footer } from './components/Footer';
 import { LightboxModal } from './components/LightboxModal';
@@ -36,6 +37,7 @@ export const App: React.FC = () => {
         <ExperienceSection />
         <MenuSection onOpenMenuLightbox={() => setIsMenuBoardOpen(true)} />
         <GallerySection />
+        <ReviewsSection />
         <VisitSection />
       </main>
 
